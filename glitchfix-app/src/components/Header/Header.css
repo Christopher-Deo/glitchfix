@@ -1,0 +1,11 @@
+header{
+    background-color: #161925;
+    max-width: 100%;
+    border-bottom: 2px solid whitesmoke;
+}
+
+.logo{
+    max-height: 8rem;
+    max-width: 90%;
+}
+

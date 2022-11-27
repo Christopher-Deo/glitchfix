@@ -1,0 +1,23 @@
+.persLogo{
+    max-height: 3rem;
+    max-width: 8rem;
+
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-height: 2rem;
+    height: 8rem;
+    background-color: #161925;
+    color: whitesmoke;
+    text-align: left;
+    padding: 1rem;
+    border-top: 2px solid whitesmoke;
+
+}
