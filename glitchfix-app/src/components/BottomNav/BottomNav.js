@@ -45,12 +45,12 @@ export default function BottomNav() {
             justifyContent: 'center',
             position: 'fixed',
             zIndex: 100,
-            }}>
+        }}>
 
             <BottomNavigation
                 className='bottom-nav'
                 style={{ backgroundColor: '#161925' }}
-                showLabels
+                showlabel = 'true'
                 value={value}
                 onChange={(event, newValue) => {
                     setValue(newValue);
@@ -60,19 +60,19 @@ export default function BottomNav() {
                 <a href="https://github.com/Christopher-Deo" target="_blank" rel="noreferrer">
                     <BottomNavigationAction
                         style={{ color: 'whitesmoke' }}
-                        label="Github" icon={<GitHubIcon />} />
+                        label="github" icon={<GitHubIcon />} />
                 </a>
                 <a href="https://www.linkedin.com/in/christopherdeo/" target="_blank" rel="noreferrer">
                     <BottomNavigationAction
                         style={{ color: 'whitesmoke' }}
-                        label="LinkedIn" icon={<LinkedInIcon />} />
+                        label="linkedIn" icon={<LinkedInIcon />} />
                 </a>
                 <a href="https://twitter.com/webdevdeo" target="_blank" rel="noreferrer">
                     <BottomNavigationAction
                         style={{
                             color: 'whitesmoke'
                         }}
-                        label="Twitter" icon={<TwitterIcon />} />
+                        label="twitter" icon={<TwitterIcon />} />
                 </a>
 
                 {/* <BottomNavigationAction
@@ -81,12 +81,12 @@ export default function BottomNav() {
                 <a href="https://christopherdeo.com/" target="_blank" rel="noreferrer">
                     <BottomNavigationAction
                         style={{ color: 'whitesmoke' }}
-                        label="Portfolio" icon={<LanguageIcon />} />
+                        label="portfolio" icon={<LanguageIcon />} />
                 </a>
                 <a href="mailto:chris@christopherdeo.com" target="_blank" rel="noreferrer">
                     <BottomNavigationAction
                         style={{ color: 'whitesmoke' }}
-                        label="Contact" icon={<EmailIcon />} />
+                        label="contact" icon={<EmailIcon />} />
                 </a>
             </BottomNavigation >
         </Box>
