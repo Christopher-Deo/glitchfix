@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin: 1rem 2rem;
+    margin: 1rem 1em;
     padding: 1rem;
     border: 3px solid #C1292E;
     border-radius: 1rem;
@@ -12,18 +12,24 @@
     box-shadow: 3px 3px 3px 3px #161925;
 }
 
+.formLabel{
+    font-size: .75rem;
+    font-weight: bold;
+    /* margin: 0.5rem; */
+}
+.formComponent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
 .issueSubmitBtn{
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
     background-color: #F1D302;
     color: dark;
     border: 2px solid #C1292E;
-    /* box-shadow: 0 0 1px 1px #161925; */
+    box-shadow: 2px 1px 3px #161925;
 }
 
-.formComponent{
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-}

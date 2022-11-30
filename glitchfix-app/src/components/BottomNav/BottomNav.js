@@ -39,10 +39,10 @@ export default function BottomNav() {
     return (
         <Box sx={{
             width: '100%',
-            height: '6rem',
-            display: 'flex',
+            // height: '4rem',
+            // display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             position: 'fixed',
             zIndex: 100,
         }}>
