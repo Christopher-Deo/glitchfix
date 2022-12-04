@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 // Local imports
-import GlitchBox from '../GlitchBox/GlitchBox';
+// import GlitchBox from '../GlitchBox/GlitchBox';
 import '../../components/IssueForm/IssueForm.css';
 
 // setting the api key to a global variable --- will need to change this to a .env file pre-build
@@ -28,7 +28,7 @@ function IssueForm() {
     // useEffect for verification of api calls
     useEffect(() => {
         fetchIssues();
-        createGlitchBox();
+        // createGlitchBox();
        // eslint-disable-next-line
     }, [projectName, message, description, severity, status, assignment, date, id]);
 
@@ -46,7 +46,8 @@ function IssueForm() {
         };        
         const { data } = await axios.post(endpoint + 'issues', newIssue);
         console.log('endpoint data for POST = ', data);
-        createGlitchBox();
+        
+        // createGlitchBox();
     };
 
     const fetchIssues = async () => {
@@ -54,10 +55,8 @@ function IssueForm() {
         console.log('endpoint data = ', data);
     };
 
-    const createGlitchBox = async ( ) => {
-        
-    };
-
+    
+    
     return (
         <div className='issue-form mt-1'>
             <h2>Enter Glitch Details</h2>
