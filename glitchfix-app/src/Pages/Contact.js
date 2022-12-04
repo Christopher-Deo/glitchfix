@@ -2,7 +2,7 @@
 import React from 'react'
 // Material UI imports
 import Box from '@mui/material/Box';
-import { display } from '@mui/system';
+// import { display } from '@mui/system';
 
 // Local imports
 // import './Pages/Contact.css';
