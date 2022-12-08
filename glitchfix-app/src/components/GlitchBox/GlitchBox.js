@@ -1,6 +1,6 @@
 // React imports
 import React, { useState, useEffect } from 'react'
-
+import axios from 'axios';
 // Material UI / Other Dependencies imports
 import Box from '@mui/material/Box';
 
@@ -12,8 +12,14 @@ import IssueForm from '../IssueForm/IssueForm';
 
 const GlitchBox = (props, Issue ) => {
   
+  useEffect(() => {
+    // console.log('props changed = ', props.Issues);
+    
+    // eslint-disable-next-line
+  }, [props.update]);
+
   return (
-    <div className='glitchBox'>
+    <div className='glitchBox' key={props.Issue.id}>
         <Box className="test" sx={{
             backgroundColor: '#FDFFFC',
             borderRadius: '1rem',
@@ -25,9 +31,9 @@ const GlitchBox = (props, Issue ) => {
             flexDirection: 'column',
               justifyContent: 'space-around',
           }}>
-              <div className='glitchBoxContent' style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '.25rem' }}> 
+              <div className='glitchBoxContent' style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '.25rem' }}>
           <span className='glitchId' data-text='ID: 123456789'
-            style={{ padding: '5px', color: '#161925' }}>Id: {props.Issue.id}</span>
+            style={{ padding: '5px', color: '#161925' }}>Id: {props.id}</span>
                 
             </div>
             <div className='glitchBoxContent' style={{display:'flex', justifyContent:'space-evenly', marginTop:'.5rem'}}>
@@ -37,7 +43,7 @@ const GlitchBox = (props, Issue ) => {
                         color: '#161925',
                         // marginTop: '.5rem'
                       }}>
-                    Project: {props.Issue.projectName}
+                    Project: {props.Issue.projectName} 
                 </span>
                     <span className='glitchDate' data-text='Date Found: 10/10/2021'><strong>Opened:</strong>11/29/2022</span>
             </div>
@@ -48,7 +54,7 @@ const GlitchBox = (props, Issue ) => {
               }}>
                   <h6>ErrorMessage</h6>
                 <span className='glitchError' data-text='Error Message: Error: Cannot find module "react-router-dom"'>
-                  {props.Issue.message}
+                  {props.Issue.message} 
                   </span>
                   <span className='glitchSeverity' data-text='Severity: High'>Severity: {props.Issue.severity}</span>
             </div>
@@ -76,12 +82,13 @@ const GlitchBox = (props, Issue ) => {
                     backgroundColor: '#F1D302',
                     border: '1px solid #161925',
                     borderRadius: '0.75rem',
-                    marginBottom: '0.5rem',      
+                    marginBottom: '0.5rem',
                       }}>Open</button></span>
-              </div>    
+              </div>
       </Box>
     </div>
   )
+  return null;
 }
 
 export default GlitchBox

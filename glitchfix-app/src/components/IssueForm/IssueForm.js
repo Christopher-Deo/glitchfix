@@ -14,7 +14,7 @@ const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
 
 
 
-function IssueForm() {   
+function IssueForm(props) {   
     const [projectName, setProjectName] = useState('');
     const [message, setMessage] = useState(false); //listing of the error message from project's code
     const [description, setDescription] = useState(''); //description of the error (how, where, when, etc.)
@@ -24,18 +24,18 @@ function IssueForm() {
     const [date, setDate] = useState(''); //date issue discovered
     const [id, setId] = useState(''); // unique uuid for each issue
 
-
+    // console.log(props);
     // useEffect for verification of api calls
-    useEffect(() => {
-        fetchIssues();
-        // createGlitchBox();
-       // eslint-disable-next-line
-    }, [projectName, message, description, severity, status, assignment, date, id]);
+    // useEffect(() => {
+    //     fetchIssues();
+        
+    //    // eslint-disable-next-line
+    // }, [projectName, message, description, severity, status, assignment, date, id]);
 
     const postFormData = async () => {
         const newIssue = {
             name: projectName,
-            error: message,
+            message: message,
             description: description,
             severity: severity,
             assignment: assignment,
@@ -46,7 +46,7 @@ function IssueForm() {
         };        
         const { data } = await axios.post(endpoint + 'issues', newIssue);
         console.log('endpoint data for POST = ', data);
-        
+        props.getAllIssues();
         // createGlitchBox();
     };
 
@@ -70,7 +70,7 @@ function IssueForm() {
 
                 <Form.Group className="mb-1 formComponent" controlId="message">
                     <Form.Label className='formLabel'>Enter Error Message</Form.Label>
-                    <Form.Control type="text" placeholder="Error Message"
+                    <Form.Control type="text" placeholder="Error Message" 
                         onChange={
                             (e) => setMessage(e.target.value)}
                             value={message} />
