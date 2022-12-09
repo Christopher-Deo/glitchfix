@@ -2,7 +2,7 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom"
 //Bootstrap imports
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 // Material UI imports
 // import Container from '@mui/material/Container';
 // Local imports

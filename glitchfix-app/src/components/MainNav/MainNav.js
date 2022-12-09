@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import {
     MDBContainer,
     MDBNavbar,
-    MDBNavbarBrand,
+    // MDBNavbarBrand,
     MDBNavbarToggler,
     MDBNavbarNav,
-    MDBNavbarItem,
+    // MDBNavbarItem,
     MDBNavbarLink,
     MDBCollapse,
     MDBIcon,} from 'mdb-react-ui-kit';
@@ -32,7 +32,7 @@ const MainNav = () => {
                     aria-label='Toggle navigation'
                     onClick={() => setShowNavSecond(!showNavSecond)}
                 > 
-                    <MDBIcon icon='bars' fas style={{ backgroundColor: '#161925'}}/>
+                    <MDBIcon icon='bars' fas style={{ backgroundColor: '#161925', color: '#161925'}}/>
                  </MDBNavbarToggler>
                 <MDBCollapse navbar show={showNavSecond}>
                     <MDBNavbarNav>

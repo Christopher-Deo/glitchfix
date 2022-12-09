@@ -3,10 +3,9 @@ import React, { useState, useEffect,} from 'react'
 // import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 // Material UI / Other Dependencies imports
-// import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 // Local imports
-// import Header from '../components/Header/Header';
-// import Footer from '../components/Footer/Footer';
+
 import IssueForm from '../components/IssueForm/IssueForm';
 import GlitchBox from '../components/GlitchBox/GlitchBox';
 
@@ -24,15 +23,15 @@ const Home = () => {
         console.log('endpoint data = ', data);
         setIssues(data);
     };
-
+        // fetch data from the API on change / submit btn click
     const getAllIssues = () => {
         setGlitchBoxUpdate(Math.random());
         fetchIssues();
           }
-
+          
     
 
-        //   Fetching data from the API
+        //   Fetching data from the API on page load
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth', });
         fetchIssues();
@@ -49,12 +48,12 @@ const Home = () => {
             paddingBottom: '100px', paddingTop: '20px',
         }}>
             
-        {/* //setting props into issue form and glitchbox */}
+        {/* setting props into issue form and glitchbox */}
             <IssueForm update={getAllIssues} />
             {issues.map(issue => {
-                return <GlitchBox Issue={issue} />
+                return <GlitchBox key={uuidv4()} Issue={issue}  />
             })}
-            
+       
         </div>
     )
 }

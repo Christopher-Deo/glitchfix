@@ -32,7 +32,7 @@ function IssueForm(props) {
     //    // eslint-disable-next-line
     // }, [projectName, message, description, severity, status, assignment, date, id]);
 
-    const postFormData = async () => {
+    const postFormData = async (props) => {
         const newIssue = {
             name: projectName,
             message: message,
@@ -41,13 +41,13 @@ function IssueForm(props) {
             assignment: assignment,
             status: status,
             date: date,
-            message: message,
+            error: message,
             id: uuidv4(),
         };        
         const { data } = await axios.post(endpoint + 'issues', newIssue);
         console.log('endpoint data for POST = ', data);
         props.getAllIssues();
-        // createGlitchBox();
+       
     };
 
     const fetchIssues = async () => {
@@ -60,17 +60,26 @@ function IssueForm(props) {
     return (
         <div className='issue-form mt-1'>
             <h2>Enter Glitch Details</h2>
+
             <Form className="glitchForm">
+                <Form.Group className="mb-1 mt-2 formComponent" controlId="date">
+                    <Form.Label className='formLabel'>Date</Form.Label>
+                    <Form.Control size ="sm" type="date" placeholder="mm/dd/yyyy"
+                        onChange={
+                            (e) => setDate(e.target.value)}
+                        value={date} />
+                </Form.Group>
+                
                 <Form.Group className="mb-1 formComponent" controlId="projectName">
                     <Form.Label className='formLabel'>Project Name</Form.Label>
-                    <Form.Control type="text" placeholder="Project Name" onChange={
+                    <Form.Control size="sm" type="text" onChange={
                         (e) => setProjectName(e.target.value)}
                         value={projectName} />
                 </Form.Group>
 
                 <Form.Group className="mb-1 formComponent" controlId="message">
                     <Form.Label className='formLabel'>Enter Error Message</Form.Label>
-                    <Form.Control type="text" placeholder="Error Message" 
+                    <Form.Control size="sm" type="text"  
                         onChange={
                             (e) => setMessage(e.target.value)}
                             value={message} />
@@ -78,23 +87,15 @@ function IssueForm(props) {
 
                 <Form.Group className="mb-1 formComponent" controlId="description">
                     <Form.Label className='formLabel'>Error Description</Form.Label>
-                    <Form.Control type="text" placeholder="What/When/How"
+                    <Form.Control as="textarea" rows={3} 
                         onChange={
                             (e) => setDescription(e.target.value)}
                         value={description} /> 
                 </Form.Group>
 
-                <Form.Group className="mb-1 mt-2 formComponent" controlId="date">
-                    <Form.Label className='formLabel'>Date Discovered</Form.Label>
-                    <Form.Control type="date" placeholder="mm/dd/yyyy"
-                        onChange={
-                            (e) => setDate(e.target.value)}
-                        value={date} /> 
-                </Form.Group>
-
                 <Form.Group className="mb-1 formComponent" controlId="severity">
                     <Form.Label className='formLabel'>Severity Level</Form.Label>
-                    <Form.Control type="text" placeholder="Low/Med/High"
+                    <Form.Control size="sm" type="text" placeholder="Low/Med/High"
                         onChange={
                             (e) => setSeverity(e.target.value)}
                         value={severity} />
@@ -102,19 +103,19 @@ function IssueForm(props) {
 
                 <Form.Group className="mb-1 formComponent" controlId="assignment">
                     <Form.Label className='formLabel'>Assigned To:</Form.Label>
-                    <Form.Control type="text" placeholder="Name / Department"
+                    <Form.Control size="sm" type="text" placeholder="Name / Department"
                         onChange={
                             (e) => setAssignment(e.target.value)}
                         value={assignment} />
                 </Form.Group>
 
-                {/* <Form.Group className="mb-1 formComponent" controlId="status">
+                 <Form.Group className="mb-1 formComponent" controlId="status">
                     <Form.Label className='formLabel'>Status</Form.Label>
                     <Form.Control type="text" placeholder="Open/Closed/In Progress"
                         onChange={
                             (e) => setStatus(e.target.value)}
                         value={status} />
-                </Form.Group> */}
+                </Form.Group> 
 
                 <Button className="issueSubmitBtn" variant="primary" type="button" onClick={postFormData}> 
                     Submit
