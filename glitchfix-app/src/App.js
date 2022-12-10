@@ -9,7 +9,7 @@ import { Route, Routes } from "react-router-dom"
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-// import IssueForm from './components/IssueForm/IssueForm';
+import IssueForm from './components/IssueForm/IssueForm';
 import Instructions from './Pages/Instructions'; 
 import Home from './Pages/Home';
 import Contact from './Pages/Contact';
