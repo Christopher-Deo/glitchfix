@@ -14,16 +14,18 @@ const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
 
 
 
-function IssueForm(props) {   
-    const [projectName, setProjectName] = useState( "");
-    const [message, setMessage] = useState(""); //listing of the error message from project's code
-    const [description, setDescription] = useState(""); //description of the error (how, where, when, etc.)
-    const [severity, setSeverity] = useState(""); // low, medium, high, critical
-    const [status, setStatus] = useState('open'); //open, closed, in progress
-    const [assignment, setAssignment] = useState( ""); //assigned to who
-    const [date, setDate] = useState(""); //date issue discovered
-    const [id, setId] = useState(uuidv4()); // unique uuid for each issue
-    
+function EditIssueForm(props) {
+    const [projectName, setProjectName] = useState(props.Issue.projectName );
+    const [message, setMessage] = useState(props.Issue.message ); //listing of the error message from project's code
+    const [description, setDescription] = useState(props.Issue.description ); //description of the error (how, where, when, etc.)
+    const [severity, setSeverity] = useState(props.Issue.severity); // low, medium, high, critical
+    const [status, setStatus] = useState(props.Issue.status || 'open'); //open, closed, in progress
+    const [assignment, setAssignment] = useState(props.Issue.assignment ||''); //assigned to who
+    const [date, setDate] = useState(props.Issue.date); //date issue discovered
+    const [id, setId] = useState(props.Issue.id || uuidv4()); // unique uuid for each issue
+
+   
+   
     const postFormData = async () => {
         const newIssue = {
             name: projectName,
@@ -33,31 +35,29 @@ function IssueForm(props) {
             assignment: assignment,
             status: status,
             date: date,
-            
-        };  
-        console.log('newIssue = ', newIssue.id)
-        const { data } = await axios.post(endpoint + 'issues', newIssue);
-        console.log('endpoint data for POST = ', data);
+        };
+        // console.log('newIssue = ', newIssue.id)
+        const { data } = await axios.put(endpoint + 'issues', newIssue);
+        console.log('endpoint data for PUT = ', data);
         props.update();
-       
     };
 
-    const fetchIssues = async () => {
-        const { data } = await axios.get(endpoint + 'issues');
-        console.log('endpoint data = ', data);
-    };
+    // const fetchIssues = async () => {
+    //     const { data } = await axios.get(endpoint + 'issues');
+    //     console.log('endpoint data = ', data);
+
     // console.log(props.Issue.id);
     return (
         <div className='issue-form mt-1'>
             <h2>Enter Glitch Details</h2>
             <Form className="glitchForm">
 
-                {/* <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
+                <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
                     <Form.Label className='formLabel'>Id</Form.Label>
                     <Form.Control type="text" placeholder="" onChange={
                         (e) => setId(e.target.value)}
                         value={id} />
-                </Form.Group> */}
+                </Form.Group>
 
                 <Form.Group className="mb-1 formComponent" controlId="projectName">
                     <Form.Label className='formLabel'>Project Name</Form.Label>
@@ -68,10 +68,10 @@ function IssueForm(props) {
 
                 <Form.Group className="mb-1 formComponent" controlId="message">
                     <Form.Label className='formLabel'>Enter Error Message</Form.Label>
-                    <Form.Control type="text" placeholder="Error Message" 
+                    <Form.Control type="text" placeholder="Error Message"
                         onChange={
                             (e) => setMessage(e.target.value)}
-                            value={message} />
+                        value={message} />
                 </Form.Group>
 
                 <Form.Group className="mb-1 formComponent" controlId="description">
@@ -79,7 +79,7 @@ function IssueForm(props) {
                     <Form.Control type="text" placeholder="What/When/How"
                         onChange={
                             (e) => setDescription(e.target.value)}
-                        value={description} /> 
+                        value={description} />
                 </Form.Group>
 
                 <Form.Group className="mb-1 mt-2 formComponent" controlId="date">
@@ -87,7 +87,7 @@ function IssueForm(props) {
                     <Form.Control type="date" placeholder="mm/dd/yyyy"
                         onChange={
                             (e) => setDate(e.target.value)}
-                        value={date} /> 
+                        value={date} />
                 </Form.Group>
 
                 <Form.Group className="mb-1 formComponent" controlId="severity">
@@ -116,7 +116,7 @@ function IssueForm(props) {
 
                 <Button className="issueSubmitBtn"
                     variant="primary" type="button"
-                    onClick={postFormData}> 
+                    onClick={postFormData}>
                     Submit
                 </Button>
 
@@ -125,4 +125,4 @@ function IssueForm(props) {
     );
 }
 
-export default IssueForm;
+export default EditIssueForm;

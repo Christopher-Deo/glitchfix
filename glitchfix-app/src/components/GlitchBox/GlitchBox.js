@@ -1,25 +1,43 @@
 // React imports
 import React, { useState, useEffect } from 'react'
-
+import axios from 'axios';
 // Material UI / Other Dependencies imports
 import Box from '@mui/material/Box';
 
 import IssueForm from '../IssueForm/IssueForm';
+import EditIssueForm from '../EditForm/EditIssueForm';
 // Local imports
 
 
 //this is the container for the details of each new issue
+const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
 
-const GlitchBox = (props, Issue ) => {
-  
+const GlitchBox = (props, Issue) => {
+  const [isEditing, setIsEditing] = useState(false);
   useEffect(() => {
     // console.log('props changed = ', props.Issues);
     
     // eslint-disable-next-line
   }, [props.update]);
 
+  //setting the delete function
+  const deleteIssue = async () => {
+    console.log('deleteIssue = ', props.Issue.id);
+    await axios.delete(endpoint + 'issues/' + props.Issue.id);
+    props.update();
+  };
+
+  //setting the update function
+  const updateIssue = async () => {
+    
+    await axios.put(endpoint + 'issues/' + props.Issue.id);
+    props.update();
+  };
+  
+
   return (
     <div className='glitchBox' key={props.Issue.id}>
+      
         <Box className="test" sx={{
             backgroundColor: '#FDFFFC',
             borderRadius: '1rem',
@@ -33,7 +51,7 @@ const GlitchBox = (props, Issue ) => {
           }}>
               <div className='glitchBoxContent' style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '.25rem' }}>
           <span className='glitchId' data-text='ID: 123456789'
-            style={{ padding: '5px', color: '#161925' }}>Id: {props.id}</span>
+            style={{ padding: '5px', color: '#161925' }}>Id: {props.Issue.id}</span>
                 
             </div>
             <div className='glitchBoxContent' style={{display:'flex', justifyContent:'space-evenly', marginTop:'.5rem'}}>
@@ -84,8 +102,39 @@ const GlitchBox = (props, Issue ) => {
                     borderRadius: '0.75rem',
                     marginBottom: '0.5rem',
                       }}>Open</button></span>
-              </div>
+          <span className='editBtn' style={{
+            display: 'flex',
+            justifyContent: 'flex-end'
+          }}>
+            <button className='editBtn' style={{
+              // backgroundColor: '#F1D302',
+              border: '1px solid #161925',
+              borderRadius: '0.75rem',
+              marginBottom: '0.5rem',
+            }}
+              onClick={() =>
+                setIsEditing(!isEditing)
+            }>
+              Edit
+            </button>
+          </span>
+
+          <span className='' style={{
+            display: 'flex',
+            justifyContent: 'flex-end'
+          }}>
+            <button className='deleteBtn' style={{
+              // backgroundColor: '#F1D302',
+              border: '1px solid #161925',
+              borderRadius: '0.75rem',
+              marginBottom: '0.5rem',
+            }} onClick={deleteIssue}>
+              Delete
+            </button>
+          </span>
+        </div>
       </Box>
+      {isEditing && <EditIssueForm Issue={props.Issue} update={props.update} />}
     </div>
   )
   return null;
