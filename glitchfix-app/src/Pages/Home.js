@@ -1,12 +1,9 @@
 //React import & Axios import
 import React, { useState, useEffect,} from 'react'
-// import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 // Material UI / Other Dependencies imports
 // import { v4 as uuidv4 } from 'uuid'
 // Local imports
-// import Header from '../components/Header/Header';
-// import Footer from '../components/Footer/Footer';
 import IssueForm from '../components/IssueForm/IssueForm';
 import GlitchBox from '../components/GlitchBox/GlitchBox';
 
@@ -34,7 +31,6 @@ const Home = () => {
 
         //   Fetching data from the API
     useEffect(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth', });
         fetchIssues();
         // eslint-disable-next-line
     }, []);

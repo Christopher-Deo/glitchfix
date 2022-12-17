@@ -3,7 +3,7 @@ import React from 'react'
 // Material UI / Other Dependencies imports
 
 // Local imports
-import MainNav from '../MainNav/MainNav';
+import TopNav from '../MainNav/TopNav';
 import logo from '../../logo.svg';
 import './Header.css';
 
@@ -13,7 +13,7 @@ const Header = () => {
     <header>
       <img className="logo" src= { logo} alt="GlitchFix Logo" />
       </header>
-    <MainNav />
+    <TopNav />
       </>
   )
 }

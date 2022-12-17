@@ -1,5 +1,5 @@
 // React imports
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // Axios and other dependency imports
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
@@ -22,7 +22,7 @@ function IssueForm(props) {
     const [status, setStatus] = useState(''); //open, closed, in progress
     const [assignment, setAssignment] = useState(''); //assigned to who
     const [date, setDate] = useState(''); //date issue discovered
-    const [id, setId] = useState(''); // unique uuid for each issue
+    const [id, setId] = useState(uuidv4()); // unique uuid for each issue
 
     // console.log(props);
     // useEffect for verification of api calls

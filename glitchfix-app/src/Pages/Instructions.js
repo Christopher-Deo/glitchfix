@@ -1,12 +1,20 @@
 // React imports
 import React, { useState, useEffect } from 'react'
+import {Routes, Route, useNavigate} from 'react-router-dom'
 // Material UI imports
 import Box from '@mui/material/Box';
 // Local imports
 import BottomNav from '../components/BottomNav/BottomNav';
-
+import Home from '../Pages/Home'
 
 const Instructions = () => {
+  const navigate = useNavigate();
+
+  const navigateToHome = () => {
+    navigate('/');
+  };
+
+
   return (
       <>
         <Box sx={{
@@ -37,8 +45,12 @@ const Instructions = () => {
         <p className='instructions' >
           Click the "Get Started" button to continue.
         </p>
-        <button type='button' className='btn btn-primary'>Get Started</button>
-            </Box>
+        <button type='button' className='btn btn-primary' onClick={navigateToHome}>Get Started</button>
+        <Routes>
+        <Route path='/'  />
+        </Routes>      
+      
+      </Box>
          
       </>
   )

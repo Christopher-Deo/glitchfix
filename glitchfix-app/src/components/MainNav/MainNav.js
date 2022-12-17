@@ -1,6 +1,6 @@
 // React imports
 import React, { useState, useEffect,} from 'react'
-import { useNavigate } from 'react-router-dom'
+import {Routes, Route } from 'react-router-dom'
 // Material UI / Other Dependencies imports
 import {
     MDBContainer,
@@ -17,9 +17,9 @@ import {
 
 const MainNav = () => {
     const [showNavSecond, setShowNavSecond] = useState(false);
-
+    
     return (
-        <MDBNavbar expand='lg'light  style={{
+        <MDBNavbar expand='sm'dark  style={{
             backgroundColor: '#C1292E',
             height: '3em',
             borderBottom: '2px solid #161925',
@@ -46,7 +46,11 @@ const MainNav = () => {
                     </MDBNavbarNav>
                 </MDBCollapse>
             </MDBContainer>
+   
         </MDBNavbar>
+        
+
+        
     );
 }
 
