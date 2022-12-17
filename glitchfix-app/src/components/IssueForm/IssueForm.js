@@ -41,8 +41,7 @@ function IssueForm(props) {
             assignment: assignment,
             status: status,
             date: date,
-            message: message,
-            id: uuidv4(),
+            id: id,
         };        
         const { data } = await axios.post(endpoint + 'issues', newIssue);
         console.log('endpoint data for POST = ', data);
@@ -54,13 +53,19 @@ function IssueForm(props) {
         const { data } = await axios.get(endpoint + 'issues');
         console.log('endpoint data = ', data);
     };
-
-    
     
     return (
         <div className='issue-form mt-1'>
             <h2>Enter Glitch Details</h2>
             <Form className="glitchForm">
+
+                <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
+                    <Form.Label className='formLabel'>Id</Form.Label>
+                    <Form.Control type="text" placeholder="" onChange={
+                        (e) => setId(e.target.value)}
+                        value={id} />
+                </Form.Group>
+
                 <Form.Group className="mb-1 formComponent" controlId="projectName">
                     <Form.Label className='formLabel'>Project Name</Form.Label>
                     <Form.Control type="text" placeholder="Project Name" onChange={

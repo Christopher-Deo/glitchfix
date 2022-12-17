@@ -1,29 +1,30 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import '../MainNav/TopNav.css'
 
 
 export default function TopNav() {
-    // const path = window.location.pathname; 
-
     return (
         <nav className='nav'>
             <Link to="/">Home</Link>
             <ul>
-                <CustomLink href="/instructions">Instructions</CustomLink>
-                <CustomLink href="/contact">Contact</CustomLink>
+                <CustomLink to="/instructions">Instructions</CustomLink>
+                <CustomLink to="/contact">Contact</CustomLink>
             </ul>
         </nav>
 
     )
 }
 
-function CustomLink({ href, children, ...props }) {
-    const path = window.location.pathname;
+function CustomLink({ to, children, ...props }) {
+    const resolvedPath = useResolvedPath(to)
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
     return (
-        <li className={path === href ? "active" : ""}>
-            <Link to={href} {...props}>{children}</Link>
+        <li className={isActive ? "active" : ""}>
+            <Link to={to} {...props}>
+                {children}
+            </Link>
         </li>
     )
 }
