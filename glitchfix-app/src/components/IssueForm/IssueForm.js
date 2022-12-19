@@ -24,7 +24,8 @@ function IssueForm(props) {
     const [date, setDate] = useState(""); //date issue discovered
     const [id, setId] = useState(uuidv4()); // unique uuid for each issue
     
-    const postFormData = async () => {
+    const postFormData = async (event) => {
+        event.preventDefault();
         const newIssue = {
             name: projectName,
             message: message,
@@ -34,11 +35,20 @@ function IssueForm(props) {
             status: status,
             date: date,
             
-        };  
+        }; 
+        setProjectName("");
+        setMessage("");
+        setDescription("");
+        setSeverity("");
+        setAssignment("");
+        setStatus("");
+        setDate("");
+
         console.log('newIssue = ', newIssue.id)
         const { data } = await axios.post(endpoint + 'issues', newIssue);
         console.log('endpoint data for POST = ', data);
         props.update();
+        event.target.reset();
        
     };
 
@@ -115,7 +125,7 @@ function IssueForm(props) {
                 </Form.Group> */}
 
                 <Button className="issueSubmitBtn"
-                    variant="primary" type="button"
+                    variant="primary" type="submit"
                     onClick={postFormData}> 
                     Submit
                 </Button>

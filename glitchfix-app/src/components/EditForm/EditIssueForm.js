@@ -15,18 +15,17 @@ const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
 
 
 function EditIssueForm(props) {
-    const [projectName, setProjectName] = useState(props.Issue.projectName );
-    const [message, setMessage] = useState(props.Issue.message ); //listing of the error message from project's code
-    const [description, setDescription] = useState(props.Issue.description ); //description of the error (how, where, when, etc.)
+    const [projectName, setProjectName] = useState(props.Issue.projectName);
+    const [message, setMessage] = useState(props.Issue.message); //listing of the error message from project's code
+    const [description, setDescription] = useState(props.Issue.description); //description of the error (how, where, when, etc.)
     const [severity, setSeverity] = useState(props.Issue.severity); // low, medium, high, critical
     const [status, setStatus] = useState(props.Issue.status || 'open'); //open, closed, in progress
-    const [assignment, setAssignment] = useState(props.Issue.assignment ||''); //assigned to who
+    const [assignment, setAssignment] = useState(props.Issue.assignment || ''); //assigned to who
     const [date, setDate] = useState(props.Issue.date); //date issue discovered
     const [id, setId] = useState(props.Issue.id || uuidv4()); // unique uuid for each issue
+    const [isVisible, setIsVisible] = useState(true);
 
-   
-   
-    const postFormData = async () => {
+    const updateFormData = async () => {
         const newIssue = {
             name: projectName,
             message: message,
@@ -35,12 +34,22 @@ function EditIssueForm(props) {
             assignment: assignment,
             status: status,
             date: date,
+            
         };
         // console.log('newIssue = ', newIssue.id)
-        const { data } = await axios.put(endpoint + 'issues', newIssue);
+        const { data } = await axios.put(endpoint + 'issues', props.Issues);
         console.log('endpoint data for PUT = ', data);
         props.update();
+       closeForm();
     };
+
+    //creating the close button function
+    function closeForm () {
+        setIsVisible(current => !current);
+        { isVisible && <EditIssueForm Issue={props.Issue} update={props.update} /> }
+    }
+
+
 
     // const fetchIssues = async () => {
     //     const { data } = await axios.get(endpoint + 'issues');
@@ -48,10 +57,9 @@ function EditIssueForm(props) {
 
     // console.log(props.Issue.id);
     return (
-        <div className='issue-form mt-1'>
-            <h2>Enter Glitch Details</h2>
+        <div className='issue-form mt-1' style={{ display: isVisible? 'flex' : 'none' }}>
+            <h2>Edit Glitch Details</h2>
             <Form className="glitchForm">
-
                 <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
                     <Form.Label className='formLabel'>Id</Form.Label>
                     <Form.Control type="text" placeholder="" onChange={
@@ -116,11 +124,13 @@ function EditIssueForm(props) {
 
                 <Button className="issueSubmitBtn"
                     variant="primary" type="button"
-                    onClick={postFormData}>
-                    Submit
+                    onClick={updateFormData}>
+                    Save
                 </Button>
 
             </Form>
+            {/* <button className='closeBtn' type="button" onClick={closeForm}>Close</button> */}
+            
         </div>
     );
 }

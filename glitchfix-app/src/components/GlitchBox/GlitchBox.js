@@ -137,7 +137,7 @@ const GlitchBox = (props, Issue) => {
       {isEditing && <EditIssueForm Issue={props.Issue} update={props.update} />}
     </div>
   )
-  return null;
+  // return null;
 }
 
 export default GlitchBox
