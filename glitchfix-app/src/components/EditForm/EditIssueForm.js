@@ -19,7 +19,7 @@ function EditIssueForm(props) {
     const [message, setMessage] = useState(props.Issue.message); //listing of the error message from project's code
     const [description, setDescription] = useState(props.Issue.description); //description of the error (how, where, when, etc.)
     const [severity, setSeverity] = useState(props.Issue.severity); // low, medium, high, critical
-    const [status, setStatus] = useState(props.Issue.status || 'open'); //open, closed, in progress
+    const [status, setStatus] = useState(props.Issue.status || ''); //open, closed, in progress
     const [assignment, setAssignment] = useState(props.Issue.assignment || ''); //assigned to who
     const [date, setDate] = useState(props.Issue.date); //date issue discovered
     const [id, setId] = useState(props.Issue.id || uuidv4()); // unique uuid for each issue
@@ -40,32 +40,30 @@ function EditIssueForm(props) {
         const { data } = await axios.put(endpoint + 'issues', props.Issues);
         console.log('endpoint data for PUT = ', data);
         props.update();
-       closeForm();
+        closeForm();
     };
 
     //creating the close button function
     function closeForm () {
         setIsVisible(current => !current);
-        { isVisible && <EditIssueForm Issue={props.Issue} update={props.update} /> }
-    }
+        }
 
+    const fetchIssues = async () => {
+        const { data } = await axios.get(endpoint + 'issues');
+        // console.log('endpoint data = ', data);
+        // console.log(props.Issue.id);
+    };
 
-
-    // const fetchIssues = async () => {
-    //     const { data } = await axios.get(endpoint + 'issues');
-    //     console.log('endpoint data = ', data);
-
-    // console.log(props.Issue.id);
     return (
         <div className='issue-form mt-1' style={{ display: isVisible? 'flex' : 'none' }}>
             <h2>Edit Glitch Details</h2>
             <Form className="glitchForm">
-                <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
+                {/* <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
                     <Form.Label className='formLabel'>Id</Form.Label>
                     <Form.Control type="text" placeholder="" onChange={
                         (e) => setId(e.target.value)}
                         value={id} />
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group className="mb-1 formComponent" controlId="projectName">
                     <Form.Label className='formLabel'>Project Name</Form.Label>
@@ -114,22 +112,22 @@ function EditIssueForm(props) {
                         value={assignment} />
                 </Form.Group>
 
-                {/* <Form.Group className="mb-1 formComponent" controlId="status">
+                <Form.Group className="mb-1 formComponent" controlId="status">
                     <Form.Label className='formLabel'>Status</Form.Label>
                     <Form.Control type="text" placeholder="Open/Closed/In Progress"
                         onChange={
                             (e) => setStatus(e.target.value)}
                         value={status} />
-                </Form.Group> */}
+                </Form.Group> 
 
                 <Button className="issueSubmitBtn"
-                    variant="primary" type="button"
+                    variant="primary" type="submit"
                     onClick={updateFormData}>
                     Save
                 </Button>
 
             </Form>
-            {/* <button className='closeBtn' type="button" onClick={closeForm}>Close</button> */}
+            <button className='closeBtn mt-3' type="button" onClick={closeForm}>Close</button>
             
         </div>
     );

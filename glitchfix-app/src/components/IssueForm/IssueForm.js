@@ -36,6 +36,7 @@ function IssueForm(props) {
             date: date,
             
         }; 
+        //resetting the form fields
         setProjectName("");
         setMessage("");
         setDescription("");
