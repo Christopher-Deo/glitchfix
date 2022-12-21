@@ -1,4 +1,4 @@
-.issue-form{
+.issueForm{
     background-color: #FDFFFC;
     display: flex;
     flex-direction: column;
@@ -25,11 +25,21 @@
 
 .issueSubmitBtn{
     margin-top: 0.5rem;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     border-radius: 0.5rem;
     background-color: #F1D302;
     color: #161925;
     border: 2px solid #C1292E;
+    box-shadow: 2px 1px 3px #161925;
+}
+
+.closeBtn{
+    /* margin-top: 0.5rem; */
+    /* padding: 0.5rem; */
+    border-radius: 0.5rem;
+    background-color: #F1D302;
+    color: #161925;
+    border: 2px solid #161925;
     box-shadow: 2px 1px 3px #161925;
 }
 

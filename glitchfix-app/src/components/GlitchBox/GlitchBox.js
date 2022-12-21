@@ -3,40 +3,40 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 // Material UI / Other Dependencies imports
 import Box from '@mui/material/Box';
-
-import IssueForm from '../IssueForm/IssueForm';
-import EditIssueForm from '../EditForm/EditIssueForm';
+import { v4 as uuidv4 } from 'uuid'
 // Local imports
+// import IssueForm from '../IssueForm/IssueForm';
+import EditIssueForm from '../EditForm/EditIssueForm';
+
+const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
 
 
 //this is the container for the details of each new issue
-const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
-
 const GlitchBox = (props, Issue) => {
+  //state variables for editing form
   const [isEditing, setIsEditing] = useState(false);
+  
+  
   useEffect(() => {
-    // console.log('props changed = ', props.Issues);
-    
-    // eslint-disable-next-line
+    console.log('props changed = ', props.Issues);
+        // eslint-disable-next-line
   }, [props.update]);
 
   //setting the delete function
   const deleteIssue = async () => {
-    console.log('deleteIssue = ', props.Issue.id);
     await axios.delete(endpoint + 'issues/' + props.Issue.id);
     props.update();
   };
 
   //setting the update function
   const updateIssue = async () => {
-    
-    await axios.put(endpoint + 'issues/' + props.Issue.id);
-    props.update();
+    await axios.put(endpoint + 'issues/' + props.Issue);
+      props.update();
   };
   
 
   return (
-    <div className='glitchBox' key={props.Issue.id}>
+    <div className='glitchBox' key={uuidv4()}>
       
         <Box className="test" sx={{
             backgroundColor: '#FDFFFC',

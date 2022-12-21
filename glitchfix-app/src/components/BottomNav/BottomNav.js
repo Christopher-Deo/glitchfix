@@ -1,11 +1,6 @@
 // React imports
 import React, { useState, useEffect } from 'react'
-/* import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from 'react-router-dom' */
+
 // Material UI imports
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -39,8 +34,6 @@ export default function BottomNav() {
     return (
         <Box sx={{
             width: '100%',
-            // height: '4rem',
-            // display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-evenly',
             position: 'fixed',
@@ -50,7 +43,7 @@ export default function BottomNav() {
             <BottomNavigation
                 className='bottom-nav'
                 style={{ backgroundColor: '#161925' }}
-                showlabel = 'true'
+                // showLabel = 'true'
                 value={value}
                 onChange={(event, newValue) => {
                     setValue(newValue);

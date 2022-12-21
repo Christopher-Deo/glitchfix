@@ -36,7 +36,11 @@ function IssueForm(props) {
             date: date,
             
         }; 
-        //resetting the form fields
+        // console.log('newIssue = ', props.Issue.id)
+        const { data } = await axios.post(endpoint + 'issues', newIssue);
+        console.log('endpoint data for POST = ', data);
+        props.update();
+        //resetting the form fields after submit
         setProjectName("");
         setMessage("");
         setDescription("");
@@ -44,12 +48,6 @@ function IssueForm(props) {
         setAssignment("");
         setStatus("");
         setDate("");
-
-        console.log('newIssue = ', newIssue.id)
-        const { data } = await axios.post(endpoint + 'issues', newIssue);
-        console.log('endpoint data for POST = ', data);
-        props.update();
-        event.target.reset();
        
     };
 
@@ -59,7 +57,7 @@ function IssueForm(props) {
     };
     // console.log(props.Issue.id);
     return (
-        <div className='issue-form mt-1'>
+        <div className='issueForm mt-1'>
             <h2>Enter Glitch Details</h2>
             <Form className="glitchForm">
 
