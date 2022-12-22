@@ -42,8 +42,11 @@ export default function BottomNav() {
 
             <BottomNavigation
                 className='bottom-nav'
-                style={{ backgroundColor: '#161925' }}
-                // showLabel = 'true'
+                style={{
+                    backgroundColor: '#161925',
+                    height: '3rem',
+                }}
+                showlabel = 'true'
                 value={value}
                 onChange={(event, newValue) => {
                     setValue(newValue);

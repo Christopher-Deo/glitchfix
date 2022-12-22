@@ -89,7 +89,9 @@ function IssueForm(props) {
 
                 <Form.Group className="mb-1 formComponent" controlId="description">
                     <Form.Label className='formLabel'>Error Description</Form.Label>
-                    <Form.Control type="text" placeholder="What/When/How"
+                    <Form.Control type="textarea"
+                        rows = '5'
+                        placeholder="What/When/How"
                         onChange={
                             (e) => setDescription(e.target.value)}
                         value={description} /> 
@@ -131,7 +133,9 @@ function IssueForm(props) {
 
                 <Form.Group className="mb-1 notes" controlId="notes">
                     <Form.Label className='formLabel'>Notes</Form.Label>
-                    <Form.Control type="textarea" placeholder="Progress Notes"
+                    <Form.Control type="textarea"
+                        rows = '5'
+                    placeholder="Progress Notes"
                         onChange={
                             (e) => setNote(e.target.value)}
                         value={note}
