@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 // Material UI / Other Dependencies imports
 import Box from '@mui/material/Box';
-import { v4 as uuidv4 } from 'uuid'
+
 // Local imports
-import IssueForm from '../IssueForm/IssueForm';
 import EditIssueForm from '../EditForm/EditIssueForm';
 import './GlitchBox.css';
-import { alignProperty } from '@mui/material/styles/cssUtils';
+import { grid } from '@mui/system';
+
 const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
 
 
@@ -29,120 +29,148 @@ const GlitchBox = (props, Issue) => {
         props.update();
     };
 
-    //setting the update function
-    const updateIssue = async () => {
-        await axios.put(endpoint + 'issues/' + props.Issue);
-        props.update();
-    };
-
-
     return (
-        <div className='container' key={uuidv4()}>
-
-            <Box className="test" sx={{
+        <div key={props.Issue.id}>
+            <Box className='glitchbox' sx={{
                 backgroundColor: '#FDFFFC',
                 borderRadius: '1rem',
                 border: '2px solid #C1292E',
                 boxShadow: '3px 3px 3px 3px #161925',
                 color: '#161925',
                 margin: '1rem 1rem 1rem 1rem',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-around',
+                display: grid,
+                justifyContent: 'space-evenly',
             }}>
-        
-                
-                <div className='glitchId'
+
+                <div className='glitchId mt-3'
                     data-text='ID: 123456789'
-                        style={{
-                            padding: '5px',
-                            color: '#161925'
-                        }}>
-                             <strong>Id:</strong> {props.Issue.id}
-                    </div>
-                
-                        
-                <div className='projectName'
-                    data-text='Project Name: GlitchFix'
-                        style={{
-                            padding: '.25rem',
-                            color: '#161925',
-                            // marginTop: '.5rem'
-                        }}>
-                    <strong>Project:</strong>  
-                </div>
-        
-
-                <div className='glitchDate'
-                    data-text='Date Found: 10/10/2021'>
-                    <strong>Opened:</strong>{props.Issue.date}
-                </div>
-                
-                <div className='glitchError' 
-                    data-text='Error Message: Error: Cannot find module "react-router-dom"'>
-                        <strong>Error Message:</strong>{props.Issue.message}
-                </div>
-
-                <div className='glitchSeverity' 
-                    data-text='Severity: High'>
-                        <strong>Severity:</strong> {props.Issue.severity}
-                </div>
-                
-                <div className='glitchDescription' 
-                    data-text='glitch description'>
-                        <strong>Description:</strong>    {props.Issue.description}
-                    </div>
-                
-                    <div className='glitchAssignedTo' 
-                        data-text='Assigned To: John Doe'>
-                            <strong>Assigned To: </strong>{props.Issue.assignment}
-                    </div>
-        
-                    <div className='status'>
-                       <strong>Status: </strong> {props.Issue.status}
-                    </div>
-        
-                    <div className='buttons'>
-                    <span className='editBtn' style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end'
+                    style={{
+                        padding: '5px',
+                        color: '#161925',
                     }}>
-                        <button className='editBtn' 
+                    <h6 style={{
+                        textDecoration: 'underline'
+                    }}>
+                        Id:
+                    </h6>
+                    {props.Issue.id}
+                </div>
+
+                <div className='projectName mt-3'
+                    data-text='Project Name: GlitchFix'
+                    style={{
+                        padding: '.25rem',
+                        color: '#161925',
+                    }}>
+                    <h6 style={{
+                        textDecoration: 'underline'
+                    }}>
+                        Project:
+                    </h6>
+                    {props.Issue.name}
+                </div>
+
+                <div className='glitchDate mt-3'
+                    data-text='Date Found: 10/10/2021'
+                    style={{
+                        padding: '.25rem',
+                        color: '#161925',
+                    }}>
+                    <h6 style={{ textDecoration: 'underline' }}>Date:</h6> {props.Issue.date}
+                </div>
+
+                <div className='glitchSeverity mt-3'
+                    data-text='Severity: High'>
+                    <h6>Severity:</h6>
+                    {props.Issue.severity}
+                </div>
+
+                <div className='glitchAssignedTo mt-3'
+                    data-text='Assigned To: John Doe'>
+                    <h6 style={{
+                        textDecoration: 'underline'
+                    }}>
+                        Assigned To:</h6>
+                    {props.Issue.assignment}
+                </div>
+
+                <div className='status mt-3'>
+                    <h6 style={{
+                        textDecoration: 'underline'
+                    }}>
+                        Status:
+                    </h6>{props.Issue.status}
+                </div>
+
+                <div className='glitchError mt-3'
+                    data-text='Error Message: Error: Cannot find module "react-router-dom"'>
+                    <h6 style={{
+                        textDecoration: 'underline'
+                    }}>
+                        Error Message:</h6>
+                    {props.Issue.message}
+                </div>
+                <div className='glitchDescription mt-3'
+                    data-text='glitch description'>
+                    <h6 style={{
+                        textDecoration: 'underline'
+                    }}>
+                        Error Description
+                    </h6>
+                    {props.Issue.description}
+                </div>
+
+                <div className='glitchNotes mt-3 mb-3'
+                    data-text='Notes'>
+                    <h6 style={{
+                        textDecoration: 'underline',
+                    }}>
+                        Progress Notes:
+                    </h6>
+                    {props.Issue.note}
+                </div>
+
+                <div className='buttons mt-3'
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        padding: '0.5rem'
+                    }}>
+                    <span className='editBtn' >
+                        <button className='editBtn'
                             style={{
-                             // backgroundColor: '#F1D302',
-                                border: '1px solid #161925',
-                                borderRadius: '0.75rem',
-                                marginBottom: '0.5rem',
-                                }}
-                                    onClick={() =>
-                                        setIsEditing(!isEditing)
-                                    }>
-                                    Edit
+                                backgroundColor: '#235789',
+                                color: 'whitesmoke',
+                                border: '2px solid #C1292E',
+                                borderRadius: '0.25rem',
+                                // marginBottom: '0.5rem',
+                                boxShadow: '2px 1px 1px 1px #161925',
+                            }}
+                            onClick={() =>
+                                setIsEditing(!isEditing)
+                            }>
+                            Edit
                         </button>
                     </span>
 
-                    <span className='' style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end'
-                    }}>
+                    <span>
                         <button className='deleteBtn' style={{
-                            // backgroundColor: '#F1D302',
-                            border: '1px solid #161925',
-                            borderRadius: '0.75rem',
-                            marginBottom: '0.5rem',
-                        }} onClick={deleteIssue}>
+                            backgroundColor: '#C1292E',
+                            color: 'whitesmoke',
+                            border: '1px solid #F1D302',
+                            borderRadius: '.25rem',
+                            // marginBottom: '0.5rem',
+                            boxShadow: '2px 1px 1px 1px #161925',
+                        }}
+                            onClick={deleteIssue}>
                             Delete
                         </button>
                     </span>
                 </div>
             </Box>
             {isEditing && <EditIssueForm Issue={props.Issue} update={props.update} />}
-            </div>
-            
-        
-            
+        </div>
     )
-    // return null;
 }
 
 export default GlitchBox

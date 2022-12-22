@@ -23,6 +23,7 @@ function IssueForm(props) {
     const [assignment, setAssignment] = useState( ""); //assigned to who
     const [date, setDate] = useState(""); //date issue discovered
     const [id, setId] = useState(uuidv4()); // unique uuid for each issue
+    const [note, setNote] = useState(""); // progress notes for each issue
     
     const postFormData = async (event) => {
         event.preventDefault();
@@ -34,7 +35,8 @@ function IssueForm(props) {
             assignment: assignment,
             status: status,
             date: date,
-            
+            id: id,
+            note: note
         }; 
         // console.log('newIssue = ', props.Issue.id)
         const { data } = await axios.post(endpoint + 'issues', newIssue);
@@ -51,22 +53,24 @@ function IssueForm(props) {
        
     };
 
-    const fetchIssues = async () => {
-        const { data } = await axios.get(endpoint + 'issues');
-        console.log('endpoint data = ', data);
-    };
+    // const fetchIssues = async () => {
+    //     const { data } = await axios.get(endpoint + 'glitches');
+    //     console.log('endpoint data = ', data);
+    // };
     // console.log(props.Issue.id);
     return (
         <div className='issueForm mt-1'>
             <h2>Enter Glitch Details</h2>
             <Form className="glitchForm">
 
-                {/* <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
+                <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
                     <Form.Label className='formLabel'>Id</Form.Label>
                     <Form.Control type="text" placeholder="" onChange={
                         (e) => setId(e.target.value)}
-                        value={id} />
-                </Form.Group> */}
+                        value={id}
+                        disabled={true}
+                    />
+                </Form.Group> 
 
                 <Form.Group className="mb-1 formComponent" controlId="projectName">
                     <Form.Label className='formLabel'>Project Name</Form.Label>
@@ -115,13 +119,25 @@ function IssueForm(props) {
                         value={assignment} />
                 </Form.Group>
 
-                {/* <Form.Group className="mb-1 formComponent" controlId="status">
+                <Form.Group className="mb-1 formComponent" controlId="status">
                     <Form.Label className='formLabel'>Status</Form.Label>
                     <Form.Control type="text" placeholder="Open/Closed/In Progress"
                         onChange={
                             (e) => setStatus(e.target.value)}
-                        value={status} />
-                </Form.Group> */}
+                        value={status}
+                        disabled={true}
+                        />
+                </Form.Group>  
+
+                <Form.Group className="mb-1 notes" controlId="notes">
+                    <Form.Label className='formLabel'>Notes</Form.Label>
+                    <Form.Control type="textarea" placeholder="Progress Notes"
+                        onChange={
+                            (e) => setNote(e.target.value)}
+                        value={note}
+                        disabled={true}
+                    />
+                </Form.Group>  
 
                 <Button className="issueSubmitBtn"
                     variant="primary" type="submit"

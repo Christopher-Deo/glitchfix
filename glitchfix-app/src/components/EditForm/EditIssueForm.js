@@ -1,19 +1,14 @@
 // React imports
 import React, { useState } from 'react';
-import {useParams} from 'react-router-dom';
 // Axios and other dependency imports
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 // Local imports
-// import GlitchBox from '../GlitchBox/GlitchBox';
 import '../../components/IssueForm/IssueForm.css';
 
 // setting the api key to a global variable --- will need to change this to a .env file pre-build
-const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/issues/';
-
-
+const endpoint = 'https://635b0bc46f97ae73a63c0775.mockapi.io/';
 
 function EditIssueForm(props) {
     const [projectName, setProjectName] = useState(props.Issue.projectName);
@@ -23,70 +18,48 @@ function EditIssueForm(props) {
     const [status, setStatus] = useState(props.Issue.status || ''); //open, closed, in progress
     const [assignment, setAssignment] = useState(props.Issue.assignment || ''); //assigned to who
     const [date, setDate] = useState(props.Issue.date); //date issue discovered
-    const [id, setId] = useState(props.Issue.id || uuidv4()); // unique uuid for each issue
+    const [note, setNote] = useState(props.Issue.note); // unique uuid for each issue
     const [isVisible, setIsVisible] = useState(true);
-    
+
     const updateFormData = async () => {
-        // const newIssue = {
-        //     name: projectName,
-        //     message: message,
-        //     description: description,
-        //     severity: severity,
-        //     assignment: assignment,
-        //     status: status,
-        //     date: date,
-            
-        // };
-        // console.log('newIssue = ', newIssue)
-        const { data } = await axios.put(endpoint,
+        const { data } = await axios.put(endpoint + 'issues/' + props.Issue.id,
             {
-                "data": {
-                    name: setProjectName(projectName),
-                    message: setMessage(message),
-                    description: setDescription(description),
-                    severity: setSeverity(severity),
-                    assignment: setAssignment(assignment),
-                    status: setStatus(status),
-                    date: setDate(date),
-                }
-            });
-        return (
-            data.then(response => {
-                console.log(response);
-                data.catch(error => {
-                    console.error(error);
-                })
-        
-                console.log('endpoint data for PUT = ', data);
-                props.update();
-                // closeForm();
+                name: projectName,
+                message: message,
+                description: description,
+                severity: severity,
+                assignment: assignment,
+                status: status,
+                date: date,
+                note: note,
             })
-        )
-    }; 
-        
+        console.log('endpoint data for PUT = ', data)
+        props.update();
+        // .then(response => {
+        //     console.log(response)
+
+        // }).catch(error => {
+        //     console.error(error);
+        //     console.log('endpoint data for PUT = ', data);
+        // })
+    }
+
 
     //creating the close button function
-    function closeForm () {
-        setIsVisible(current => !current);
-        }
+    // function closeForm() {
+    //     setIsVisible(current => !current);
+    // }
 
-    const fetchIssues = async () => {
-        const { data } = await axios.get(endpoint + 'issues');
-        // console.log('endpoint data = ', data);
-        // console.log(props.Issue.id);
-    };
+    // const fetchIssues = async () => {
+    //     const { data } = await axios.get(endpoint + 'issues');
+    //     console.log('endpoint data = ', data);
+    //     console.log(props.Issue.id);
+    // };
 
     return (
-        <div className='issueForm mt-1' style={{ display: isVisible? 'flex' : 'none' }}>
+        <div className='issueForm mt-1' style={{ display: isVisible ? 'flex' : 'none' }}>
             <h2>Edit Glitch Details</h2>
             <Form className="glitchForm">
-                {/* <Form.Group className="mb-1 formComponent" controlId={uuidv4()}>
-                    <Form.Label className='formLabel'>Id</Form.Label>
-                    <Form.Control type="text" placeholder="" onChange={
-                        (e) => setId(e.target.value)}
-                        value={id} />
-                </Form.Group> */}
-
                 <Form.Group className="mb-1 formComponent" controlId="projectName">
                     <Form.Label className='formLabel'>Project Name</Form.Label>
                     <Form.Control type="text" placeholder="Project Name" onChange={
@@ -140,7 +113,15 @@ function EditIssueForm(props) {
                         onChange={
                             (e) => setStatus(e.target.value)}
                         value={status} />
-                </Form.Group> 
+                </Form.Group>
+
+                <Form.Group className="mb-1 formComponent" controlId="description">
+                    <Form.Label className='formLabel'>Progress Notes</Form.Label>
+                    <Form.Control type="textarea" placeholder="What has been done?"
+                        onChange={
+                            (e) => setNote(e.target.value)}
+                        value={note} />
+                </Form.Group>
 
                 <Button className="issueSubmitBtn"
                     type="button"
@@ -148,7 +129,7 @@ function EditIssueForm(props) {
                     onClick={updateFormData}>
                     Save
                 </Button>
-                <Button className='closeBtn mt-3'
+                {/* <Button className='closeBtn mt-3'
                     style={{
                         backgroundColor: "#C1292E",
                         color: "white",
@@ -156,10 +137,10 @@ function EditIssueForm(props) {
                         marginLeft: "10px",
                     }}
                     type="button"
-                    onClick={closeForm}>Close</Button>
+                    onClick={closeForm}>Close</Button> */}
             </Form>
-           
-            
+
+
         </div>
     );
 }

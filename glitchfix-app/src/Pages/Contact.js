@@ -1,8 +1,9 @@
 // React imports
-import React from 'react'
-// Material UI imports
+import React, { useState, useEffect } from 'react';
+
+
 import Box from '@mui/material/Box';
-// import { display } from '@mui/system';
+
 
 // Local imports
 // import './Pages/Contact.css';
@@ -14,12 +15,12 @@ const Contact = () => {
         e.preventDefault()
         setFormStatus('Submitting...')
         const { name, email, message } = e.target.elements
-        let conFom = {
+        let contactForm = {
             name: name.value,
             email: email.value,
             message: message.value,
         }
-        console.log(conFom)
+        console.log(contactForm)
     }
 
 
@@ -41,7 +42,7 @@ const Contact = () => {
             }}>
                 <h1 className="contactTitle mb-3 display-1">Let's Connect!</h1>
                 <p className='mt-1'>If you'd like to discuss this or any other project, Please fill out the form below.</p>
-                <p className='mb-4'>If you'd like to connect on social media, simply click on an icon at the bottom of the screen to be taken to my profile page.</p>
+                <p className='mb-4'>If you'd like to connect on social media, click on an icon at the bottom of the screen to be taken to my profile pages.</p>
                 <form onSubmit={onSubmit}>
                     <div className="mb-3">
                         <label className="form-label" htmlFor="name">

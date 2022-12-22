@@ -23,6 +23,7 @@ const Home = () => {
 
     const getAllIssues = () => {
         // setGlitchBoxUpdate(Math.random());
+        console.log("getAllIssues called")
         fetchIssues();
           }
 
@@ -48,6 +49,7 @@ const Home = () => {
             {issues.map(issue => {
                 return (
                     <Glitchbox2 key={uuidv4()} Issue={issue} update={getAllIssues} />
+                
                 )
             })}
             
