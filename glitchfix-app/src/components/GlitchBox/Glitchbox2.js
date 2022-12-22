@@ -133,10 +133,12 @@ const GlitchBox = (props, Issue) => {
                 <div className='buttons mt-3'
                     style={{
                         display: 'flex',
-                        justifyContent: 'space-between',
-                        padding: '0.5rem'
+                        flexDirection: 'column',
+                        // justifyContent: 'space-between',
+                        padding: '0.5rem',
+                        margin: '0.5rem',
                     }}>
-                    <span className='editBtn' >
+                    <span className='editBtn ' >
                         <button className='editBtn'
                             style={{
                                 backgroundColor: '#235789',
@@ -154,7 +156,7 @@ const GlitchBox = (props, Issue) => {
                     </span>
 
                     <span>
-                        <button className='deleteBtn' style={{
+                        <button className='deleteBtn mt-2' style={{
                             backgroundColor: '#C1292E',
                             color: 'whitesmoke',
                             border: '1px solid #F1D302',

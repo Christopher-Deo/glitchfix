@@ -46,7 +46,7 @@ window.env = {
   "npm_config_cache": "/Users/christopherdeo/.npm",
   "LOGNAME": "christopherdeo",
   "npm_lifecycle_script": "react-dotenv && react-scripts start",
-  "VSCODE_GIT_IPC_HANDLE": "/var/folders/s9/4yvg_86j7hb5x1017__t3blc0000gn/T/vscode-git-b5e74845a0.sock",
+  "VSCODE_GIT_IPC_HANDLE": "/var/folders/s9/4yvg_86j7hb5x1017__t3blc0000gn/T/vscode-git-2136901a50.sock",
   "npm_config_user_agent": "npm/8.15.0 node/v16.17.0 darwin arm64 workspaces/false",
   "VSCODE_GIT_ASKPASS_NODE": "/private/var/folders/s9/4yvg_86j7hb5x1017__t3blc0000gn/T/AppTranslocation/465705A6-BFB0-4A76-A45B-12CFAF2DE522/d/Visual Studio Code .app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper",
   "GIT_ASKPASS": "/private/var/folders/s9/4yvg_86j7hb5x1017__t3blc0000gn/T/AppTranslocation/465705A6-BFB0-4A76-A45B-12CFAF2DE522/d/Visual Studio Code .app/Contents/Resources/app/extensions/git/dist/askpass.sh",
