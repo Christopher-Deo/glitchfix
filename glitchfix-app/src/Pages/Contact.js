@@ -10,7 +10,7 @@ import emailjs from 'emailjs-com';
 
 const Contact = () => {
     const form = useRef();
-    
+
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.sendForm(
@@ -18,8 +18,8 @@ const Contact = () => {
             'template_f41vctq',
             form.current,
             'Gv10ftwMF--cCn9mU')
-            .then((result) => {   
-            console.log("success ", result.text);
+            .then((result) => {
+                console.log("success ", result.text);
                 alert('SUCCESS!')
             }, (error) => {
                 console.log('error ', error.text);
@@ -50,9 +50,9 @@ const Contact = () => {
                 <form
                     ref={form}
                     style={{
-                    border: '2px solid #C1292E',
-                    borderRadius: '0.5rem',
-                    padding: '2rem',
+                        border: '2px solid #C1292E',
+                        borderRadius: '0.5rem',
+                        padding: '2rem',
                     }}
                     onSubmit={sendEmail}
                 >
